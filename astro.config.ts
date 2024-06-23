@@ -1,6 +1,6 @@
+import tailwind from "@astrojs/tailwind";
 import qwik from "@qwikdev/astro";
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
 
 import node from "@astrojs/node";
 
