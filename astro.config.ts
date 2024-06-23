@@ -1,14 +1,13 @@
 import tailwind from "@astrojs/tailwind";
 import qwik from "@qwikdev/astro";
 import { defineConfig } from "astro/config";
-
 import node from "@astrojs/node";
+
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: node({
-    mode: "standalone",
-  }),
-  integrations: [qwik(), tailwind()],
+  adapter: vercel(),
+  integrations: [qwik(), tailwind()]
 });
