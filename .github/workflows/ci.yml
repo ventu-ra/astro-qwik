@@ -13,21 +13,29 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        bun: [1.1]
+        node: [lts/*]
         experimental: [false]
-    name: 👷 CI @qwikdev/astro Bun-${{ matrix.bun }} under ${{ matrix.os }}
+    name: 👷 CI @QwikDev/astro on Node-${{ matrix.node }} under ${{ matrix.os }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🎉 Setup Bun.sh
-        uses: oven-sh/setup-bun@v1
+      - name: 🐳 Setup Node
+        uses: actions/setup-node@v4
         with:
-          bun-version: ${{ matrix.bun }}
+          node-version: ${{ matrix.node }}
 
-      - name: ✨ Install dependencies
-        run: bun install
+      - name: ⚡️ Setup pnpm
+          uses: pnpm/action-setup@v3
+          with:
+            version: 9
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: ✅ Check code format and lint
+        run: pnpm check
 
       - name: ✅ Check code style
         run: bun check
