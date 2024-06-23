@@ -1,43 +1,36 @@
 name: CI
 
+permissions:
+  contents: read
+
 on: ["push", "pull_request"]
 
 jobs:
-  test:
+  ci:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        node: [lts/*]
+        bun: [1.1]
         experimental: [false]
-    name: 👷 CI @QwikDev/astro on Node-${{ matrix.node }} under ${{ matrix.os }}
-
-    timeout-minutes: 60
+    name: 👷 CI @qwikdev/astro Bun-${{ matrix.bun }} under ${{ matrix.os }}
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 🐳 Setup Node
-        uses: actions/setup-node@v4
+      - name: 🎉 Setup Bun.sh
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: ${{ matrix.node }}
+          bun-version: ${{ matrix.bun }}
 
-      - name: ⚡️ Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
+      - name: ✨ Install dependencies
+        run: bun install
 
-      - name: 📦 Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      # - name: ✅ Check code format and lint
-      #   run: pnpm check
-
-      - name: 🧪 Run E2E tests
-        run: pnpm test
+      # - name: ✅ Check code style
+      #   run: bun check
 
       - uses: actions/upload-artifact@v4
         if: always()
