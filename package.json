@@ -22,20 +22,20 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/node": "^8.2.5",
+    "@astrojs/node": "^8.3.1",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vercel": "^7.7.1",
     "@builder.io/qwik": "1.5.6",
-    "@qwikdev/astro": "^0.5.14",
-    "astro": "^4.6.3",
+    "@qwikdev/astro": "^0.5.16",
+    "astro": "^4.11.0",
     "flowbite": "^2.3.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.7.0",
+    "@biomejs/biome": "^1.8.2",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
-    "vercel": "^29.1.1"
+    "vercel": "^29.4.0"
   }
 }
